@@ -10,22 +10,23 @@ cards = ['Ah', 'As', 'Ac', 'Ad', 'Kh', 'Ks', 'Kc', 'Qd', 'Qh', 'Qs', 'Qc', 'Qd',
 
 south, east, north, west, kitty = [], [], [], [], []
 
-# TODO: make array that counts who is dealer
+order = ['south', 'west', 'north', 'east']
 
-trump = []
+trump, first = '', ''
 
 
 
 def startup():
-    print("User is dealer first")
+    first = order[random.randrange(0,4)]
+    print(first," is dealer first")
 
 
 
 
 
 def deal():
+    print(first)
     random.shuffle(cards)
-
     for n in range(5):
         south.append(cards[n])
         east.append(cards[n+5])
@@ -37,7 +38,7 @@ def deal():
     
     print("Your cards: ", south)
 
-    print(east, north, west, sep="   ")
+    # print(east, north, west, sep="   ")
 
    
 def bid():
@@ -63,9 +64,32 @@ def bid():
     
     play = input("Would you like to play (y or n): ")
 
-    if play == "n":
+    
+    if play == "y":
+        for t in kitty[0]:
+            trump = t
+        # trump = kitty[0].charAt(kitty[0].length-1)
+    else:
         # TODO: implment ai calling suit
         trump = input("Please pick a suit(h, d, c, s): ")
+       
+
+
+def annouce():
+    print("PRINTSTATEMENT",trump)
+    if trump  == "h":
+        print("trump is Hearts")
+    
+    if trump == "d":
+        print("trump is Diamonds")
+    
+    if trump == "c":
+        print("trump is Clubs")
+
+    if trump == "s":
+        print("trump is Spades")
+    
+    print("South starts")
         
         
 
@@ -80,4 +104,5 @@ def aiBid(hand):
 
 startup()
 deal()
-bid()
+# bid()
+# annouce()
